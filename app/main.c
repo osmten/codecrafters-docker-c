@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
 			close(fd2[1]);
 
 		   wait(NULL);
-		   printf("Child terminated");
+		  // printf("Child terminated");
 	}
 
 	return 0;
