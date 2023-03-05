@@ -29,15 +29,15 @@ int main(int argc, char *argv[]) {
 		dup2(fd1[1],STDERR_FILENO);
 		dup2(fd1[1],STDOUT_FILENO);
 		//dup2(fd[1],2);
-		close(fd1[0]);
-		close(fd2[0]);
+		// close(fd1[0]);
+		// close(fd2[0]);
 	    execv(command, &argv[3]);
 		
 	} else {
 		   // We're in parent
 
-			close(fd1[1]);
-			close(fd2[1]);
+			// close(fd1[1]);
+			// close(fd2[1]);
 			dup2(fd1[0],STDIN_FILENO);
 		   wait(NULL);
 		  // printf("Child terminated");
