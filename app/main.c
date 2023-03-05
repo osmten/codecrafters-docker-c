@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 			// close(fd1[1]);
 			// close(fd2[1]);
 		   //dup2(fd1[0],STDIN_FILENO);
-		   while(read(fd1[0], buffer, BUFFER_SIZE) != 0) {}
+		read(fd1[0], buffer, BUFFER_SIZE);
 		  printf(buffer);
 		   wait(NULL);
 		  // printf("Child terminated");
