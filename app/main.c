@@ -51,8 +51,8 @@ int main(int argc, char *argv[]) {
 
 		while ((ret = read(fd1[0], buffer, BUFFER_SIZE)) > 0)
 	{
-		//write(STDOUT_FILENO, buffer, ret);
-		print(buffer);
+		write(STDOUT_FILENO, buffer, ret);
+		printf("%d\n",STDOUT_FILENO);
 	}
 
 	while ((ret = read(fd2[0], buffer, BUFFER_SIZE)) > 0)
