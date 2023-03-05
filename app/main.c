@@ -7,8 +7,12 @@ int main(int argc, char *argv[]) {
 	// Disable output buffering
 	setbuf(stdout, NULL);
 
+
+	enum {BUFFER_SIZE=4096};
+
 	int fd1[2];
 	int fd2[2];  
+	char buffer[BUFFER_SIZE];
 	pipe(fd1);
 	pipe(fd2);
 
@@ -38,7 +42,9 @@ int main(int argc, char *argv[]) {
 
 			// close(fd1[1]);
 			// close(fd2[1]);
-			dup2(fd1[0],STDIN_FILENO);
+		   dup2(fd1[0],STDIN_FILENO);
+		   while(read(fd1[0], buffer, BUFFER_SIZE) != 0) {}
+		  printf(buffer);
 		   wait(NULL);
 		  // printf("Child terminated");
 	}
