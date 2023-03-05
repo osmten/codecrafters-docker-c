@@ -43,9 +43,6 @@ int main(int argc, char *argv[]) {
 
 			 close(fd1[1]);
 			 close(fd2[1]);
-		     wait(NULL);
-		  // printf("Child terminated");
-	}
 
 		int ret;
 
@@ -62,6 +59,10 @@ int main(int argc, char *argv[]) {
 		//write(STDERR_FILENO, buffer, ret);
  	}
 
+
+		     wait(NULL);
+		  // printf("Child terminated");
+	}
 
 
 
