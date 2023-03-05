@@ -7,6 +7,11 @@ int main(int argc, char *argv[]) {
 	// Disable output buffering
 	setbuf(stdout, NULL);
 
+	int fd1[2];
+	int fd2[2];  
+	pipe(fd1);
+	pipe(fd2);
+
 	// You can use print statements as follows for debugging, they'll be visible when running tests.
 	printf("Logs from your program will appear here!\n");
 
@@ -21,9 +26,19 @@ int main(int argc, char *argv[]) {
 	
 	if (child_pid == 0) {
 		   // Replace current program with calling program
+		dup2(fd1[1],STDERR_FILENO);
+		dup2(fd2[1],STDOUT_FILENO);
+		//dup2(fd[1],2);
+		close(fd1[0]);
+		close(fd2[0]);
 	    execv(command, &argv[3]);
+		
 	} else {
 		   // We're in parent
+
+			close(fd1[1]);
+			close(fd2[1]);
+
 		   wait(NULL);
 		   printf("Child terminated");
 	}
