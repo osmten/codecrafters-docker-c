@@ -57,8 +57,8 @@ int main(int argc, char *argv[]) {
 
 	while ((ret = read(fd2[0], buffer, BUFFER_SIZE)) > 0)
 	{
-		print(buffer);
-		//write(STDERR_FILENO, buffer, ret);
+		//print(buffer);
+		write(STDERR_FILENO, buffer, ret);
  	}
 
 
