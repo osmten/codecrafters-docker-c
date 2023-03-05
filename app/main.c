@@ -49,15 +49,17 @@ int main(int argc, char *argv[]) {
 
 		int ret;
 
-	// 	while ((ret = read(fd1[0], buffer, BUFFER_SIZE)) > 0)
-	// {
-	// 	write(STDOUT_FILENO, buffer, ret);
-	// }
+		while ((ret = read(fd1[0], buffer, BUFFER_SIZE)) > 0)
+	{
+		//write(STDOUT_FILENO, buffer, ret);
+		print(buffer);
+	}
 
-	// while ((ret = read(fd2[0], buffer, BUFFER_SIZE)) > 0)
-	// {
-	// 	write(STDERR_FILENO, buffer, ret);
- 	// }
+	while ((ret = read(fd2[0], buffer, BUFFER_SIZE)) > 0)
+	{
+		print(buffer);
+		//write(STDERR_FILENO, buffer, ret);
+ 	}
 
 
 
