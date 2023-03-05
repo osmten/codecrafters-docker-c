@@ -30,24 +30,37 @@ int main(int argc, char *argv[]) {
 	
 	if (child_pid == 0) {
 		   // Replace current program with calling program
-		dup2(fd1[1],STDERR_FILENO);
 		dup2(fd1[1],STDOUT_FILENO);
-		//dup2(fd[1],2);
-		// close(fd1[0]);
-		// close(fd2[0]);
+		dup2(fd2[1],STDERR_FILENO);	
+		 close(fd1[0]);
+		 close(fd2[0]);
+		 close(fd1[2]);
+		 close(fd2[2]);
 	    execv(command, &argv[3]);
 		
 	} else {
 		   // We're in parent
 
-			// close(fd1[1]);
-			// close(fd2[1]);
-		   //dup2(fd1[0],STDIN_FILENO);
-		read(fd1[0], buffer, BUFFER_SIZE);
-		  printf(buffer);
-		   wait(NULL);
+			 close(fd1[1]);
+			 close(fd2[1]);
+		     wait(NULL);
 		  // printf("Child terminated");
 	}
+
+		int ret;
+
+		while ((ret = read(fd1[0], buffer, BUFFER_SIZE)) > 0)
+	{
+		write(STDOUT_FILENO, buffer, ret);
+	}
+
+	while ((ret = read(fd2[0], buffer, BUFFER_SIZE)) > 0)
+	{
+		write(STDERR_FILENO, buffer, ret);
+ 	}
+
+
+
 
 	return 0;
 }
