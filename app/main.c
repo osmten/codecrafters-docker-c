@@ -11,7 +11,8 @@ int main(int argc, char *argv[]) {
 	enum {BUFFER_SIZE=4096};
 
 	int fd1[2];
-	int fd2[2];  
+	int fd2[2];
+	int status;  
 	char buffer[BUFFER_SIZE];
 	pipe(fd1);
 	pipe(fd2);
@@ -38,8 +39,7 @@ int main(int argc, char *argv[]) {
 
 			 close(fd1[1]);
 			 close(fd2[1]);
-		     wait(NULL);
-	}
+
 
 		int ret;
 
@@ -53,6 +53,10 @@ int main(int argc, char *argv[]) {
 		fprintf(stderr, buffer);
 		
  	}
+
+		     wait(&status);
+			 return WEXITSTATUS(status);   
+	}
 
 
 
