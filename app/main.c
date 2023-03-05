@@ -16,11 +16,6 @@ int main(int argc, char *argv[]) {
 	pipe(fd1);
 	pipe(fd2);
 
-	// You can use print statements as follows for debugging, they'll be visible when running tests.
-	//printf("Logs from your program will appear here!\n");
-
-	// Uncomment this block to pass the first stage
-	//
 	char *command = argv[3];
 	int child_pid = fork();
 	if (child_pid == -1) {
@@ -43,26 +38,22 @@ int main(int argc, char *argv[]) {
 
 			 close(fd1[1]);
 			 close(fd2[1]);
+		     wait(NULL);
+	}
 
 		int ret;
 
 		while ((ret = read(fd1[0], buffer, BUFFER_SIZE)) > 0)
 	{
-		//write(STDOUT_FILENO, buffer, ret);
 		printf(buffer);
-		//printf("\n");
 	}
 
 	while ((ret = read(fd2[0], buffer, BUFFER_SIZE)) > 0)
 	{
 		fprintf(stderr, buffer);
-		//write(STDERR_FILENO, buffer, ret);
+		
  	}
 
-
-		     wait(NULL);
-		  // printf("Child terminated");
-	}
 
 
 
